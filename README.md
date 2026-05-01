@@ -1,4 +1,4 @@
-# <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/robot.svg" width="28" style="vertical-align:text-bottom;"> 林缪斯 (Linmius)
+# <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/robot.svg" width="28" style="vertical-align:text-bottom;"> 林缪斯 (Linmusi)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ring-operation/gemma-270m/main/CherryBlossom.svg" width="120" alt="林缪斯 Logo">
