@@ -1,1 +1,174 @@
-# LinMuSi-TurboWarp-Expand
+# 🌸 林缪斯 (Linmius)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ring-operation/gemma-270m/main/CherryBlossom.svg" width="120" alt="林缪斯 Logo">
+</p>
+
+<p align="center">
+  <b>在浏览器中本地运行 AI 模型的 TurboWarp/Scratch 扩展</b>
+</p>
+
+<p align="center">
+  <a href="#功能特点">功能特点</a> •
+  <a href="#快速开始">快速开始</a> •
+  <a href="#使用教程">使用教程</a> •
+  <a href="#技术架构">技术架构</a>
+</p>
+
+---
+
+## ✨ 功能特点
+
+- **🤖 本地 AI 推理** - 基于 [wllama](https://github.com/ngxson/wllama) 在浏览器中直接运行 GGUF 格式模型，数据完全本地处理，无需联网
+- **📚 知识库系统** - 支持自定义知识库，实现 RAG (检索增强生成) 功能
+- **💬 AI 训练师** - 内置交互式训练界面，可实时教 AI 新知识
+- **⚡ 后台线程支持** - Worker 模式运行模型，不阻塞 UI
+- **💾 离线存储** - 模型和知识库数据持久化存储在浏览器 IndexedDB 中
+- **🎮 积木块编程** - 完整的 Scratch 积木块支持，拖拽即可实现 AI 功能
+
+## 🚀 快速开始
+
+### 安装方法
+
+#### 方法一：直接加载（推荐）
+
+1. 打开 [TurboWarp](https://turbowarp.org/) 或 [Scratch](https://scratch.mit.edu/)
+2. 点击左下角「添加扩展」按钮
+3. 选择「加载自定义扩展」
+4. 输入以下 URL：
+   ```
+   https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名/gemma-ai-gguf-wllama.js
+   ```
+
+#### 方法二：本地加载
+
+1. 下载 `gemma-ai-gguf-wllama.js` 文件
+2. 在 TurboWarp 中选择「从本地文件加载」
+3. 选择下载的 JS 文件
+
+### 首次使用
+
+1. **加载模型**：点击扩展的「打开模型管理器」按钮
+2. **选择模型**：可以从 URL 加载或选择本地 GGUF 文件
+3. **开始对话**：模型加载完成后即可使用 AI 功能
+
+## 📖 使用教程
+
+### 基础积木块
+
+| 积木块 | 功能说明 |
+|--------|----------|
+| `问 AI: [问题]` | 向 AI 发送问题并获取回复 |
+| `问 AI (带知识库): [问题]` | 使用知识库上下文回答 |
+| `AI 的回复` | 获取最近一次 AI 的回复内容 |
+| `当 AI 回复完成时` | 事件触发积木 |
+
+### 知识库操作
+
+| 积木块 | 功能说明 |
+|--------|----------|
+| `添加知识: [内容]` | 向当前知识库添加内容 |
+| `清空知识库` | 清空所有知识库数据 |
+| `当前启用的知识库` | 返回当前知识库名称 |
+
+### 字符串处理
+
+| 积木块 | 功能说明 |
+|--------|----------|
+| `将字符串按每 [N] 个字符分割` | 分割字符串为数组 |
+| `将数组拼接为字符串` | 将字符串数组合并 |
+
+### AI 训练师界面
+
+1. 点击扩展工具栏的「AI训练师」按钮
+2. 创建或选择知识库
+3. 输入 `学习: 你想教给 AI 的内容` 来训练
+4. 或直接提问让 AI 基于知识库回答
+
+## 🏗️ 技术架构
+
+```
+┌─────────────────────────────────────────┐
+│           TurboWarp / Scratch           │
+│              (前端界面)                  │
+├─────────────────────────────────────────┤
+│         林缪斯扩展 (Linmius)            │
+│  ┌─────────────┐    ┌──────────────┐   │
+│  │  积木块接口  │    │  UI 管理器    │   │
+│  └─────────────┘    └──────────────┘   │
+├─────────────────────────────────────────┤
+│         Web Worker (可选)               │
+│         AI 推理后台线程                  │
+├─────────────────────────────────────────┤
+│              wllama                     │
+│      (WebAssembly GGUF 推理引擎)         │
+├─────────────────────────────────────────┤
+│         IndexedDB (本地存储)            │
+│    模型缓存 | 知识库数据 | 配置信息       │
+└─────────────────────────────────────────┘
+```
+
+## 🧩 支持的模型
+
+本扩展支持 GGUF 格式的模型，推荐以下轻量级模型：
+
+| 模型 | 大小 | 特点 |
+|------|------|------|
+| Gemma 2B/4B | ~1.5-3GB | Google 开源，中文支持较好 |
+| Llama 3.2 1B/3B | ~0.6-2GB | Meta 最新，效率高 |
+| Qwen 2.5 0.5B/1.5B | ~0.3-1GB | 阿里云，中文优化 |
+| Phi-3/4 Mini | ~2-4GB | Microsoft，推理能力强 |
+
+> 💡 提示：模型越大效果越好，但需要更多内存和加载时间
+
+## 🛠️ 开发相关
+
+### 构建混淆版本
+
+```bash
+node build-protected.js gemma-ai-gguf-wllama.js
+```
+
+输出文件：`gemma-ai-gguf-wllama-protected.js`
+
+### 项目结构
+
+```
+.
+├── gemma-ai-gguf-wllama.js      # 主扩展文件
+├── gemma-ai-gguf-wllama-protected.js  # 混淆保护版本
+├── build-protected.js           # 混淆构建脚本
+└── README.md                    # 本文件
+```
+
+## 🤝 社区交流
+
+- **QQ 群**: [1103478438](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=...) 
+- **Bilibili**: [林缪斯官方账号](https://space.bilibili.com/)
+- **GitHub**: [项目仓库](https://github.com/你的用户名/你的仓库名)
+- **小码王**: [社区主页](https://world.xiaomawang.com/)
+
+## 📝 更新日志
+
+### v1.0.0 (2024-XX-XX)
+- ✨ 首次发布
+- 🤖 支持本地 GGUF 模型运行
+- 📚 知识库与 RAG 功能
+- 💬 AI 训练师交互界面
+- ⚡ Worker 后台线程支持
+
+## 📄 许可证
+
+本项目采用 [MIT License](LICENSE) 开源协议。
+
+## 🙏 致谢
+
+- [wllama](https://github.com/ngxson/wllama) - 浏览器端 GGUF 推理引擎
+- [llama.cpp](https://github.com/ggerganov/llama.cpp) - 底层推理实现
+- [TurboWarp](https://turbowarp.org/) - Scratch 改进版运行时
+
+---
+
+<p align="center">
+  Made with 💖 by 林缪斯团队
+</p>
