@@ -1,4 +1,4 @@
-<h1 align="left" style="border-bottom:none;"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/robot.svg" width="32" height="32" style="vertical-align:middle; margin-right: 8px; display:inline;">林缪斯 (Linmius)</h1>
+# <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/robot.svg" width="28" style="vertical-align:text-bottom;"> 林缪斯 (Linmius)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ring-operation/gemma-270m/main/CherryBlossom.svg" width="120" alt="林缪斯 Logo">
@@ -173,5 +173,5 @@ node build-protected.js 不成熟的强行嵌入模型版本.js
 ---
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/heart.svg" width="14" style="vertical-align:middle;"> Made by 林缪斯团队
+  <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/heart.svg" width="14" style="vertical-align:middle;"> Made by ring-operation
 </p>
