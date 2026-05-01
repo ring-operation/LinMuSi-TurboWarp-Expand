@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="#功能特点"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/star.svg" width="14" style="vertical-align:middle;"> 功能特点</a> •
-  <a href="#快速开始"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/rocket.svg" width="14" style="vertical-align:middle;"> 快速开始</a> •
-  <a href="#使用教程"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/book.svg" width="14" style="vertical-align:middle;"> 使用教程</a> •
-  <a href="#技术架构"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/sitemap.svg" width="14" style="vertical-align:middle;"> 技术架构</a>
+  <a href="#-%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/star.svg" width="14" style="vertical-align:middle;"> 功能特点</a> •
+  <a href="#-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/rocket.svg" width="14" style="vertical-align:middle;"> 快速开始</a> •
+  <a href="#-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/book.svg" width="14" style="vertical-align:middle;"> 使用教程</a> •
+  <a href="#-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/sitemap.svg" width="14" style="vertical-align:middle;"> 技术架构</a>
 </p>
 
 ---
