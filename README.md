@@ -35,9 +35,9 @@
 1. 打开 [TurboWarp](https://turbowarp.org/) 或 [Scratch](https://scratch.mit.edu/)
 2. 点击左下角「添加扩展」按钮
 3. 选择「加载自定义扩展」
-4. 输入以下 URL：
+4. 输入以下 URL（中文已编码）：
    ```
-   https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名/林缪斯.js
+   https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名/%E6%9E%97%E7%BC%AA%E6%96%AF.js
    ```
 
 #### <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/folder-open.svg" width="14" style="vertical-align:middle;"> 方法二：本地加载
