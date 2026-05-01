@@ -37,7 +37,7 @@
 3. 选择「加载自定义扩展」
 4. 输入以下 URL（中文已编码）：
    ```
-   https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名/%E6%9E%97%E7%BC%AA%E6%96%AF.js
+   https://cdn.jsdelivr.net/gh/ring-operation/LinMuSi-TurboWarp-Expand/%E6%9E%97%E7%BC%AA%E6%96%AF.js
    ```
 
 #### <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/folder-open.svg" width="14" style="vertical-align:middle;"> 方法二：本地加载
@@ -146,7 +146,7 @@ node build-protected.js 不成熟的强行嵌入模型版本.js
 
 - **<img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tencentqq.svg" width="14" style="vertical-align:middle;"> QQ 群**: [1103478438](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=...) 
 - **<img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/bilibili.svg" width="14" style="vertical-align:middle;"> Bilibili**: [林缪斯官方账号](https://space.bilibili.com/)
-- **<img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" width="14" style="vertical-align:middle;"> GitHub**: [项目仓库](https://github.com/你的用户名/你的仓库名)
+- **<img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" width="14" style="vertical-align:middle;"> GitHub**: [项目仓库](https://github.com/ring-operation/LinMuSi-TurboWarp-Expand)
 - **<img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/code.svg" width="14" style="vertical-align:middle;"> 小码王**: [社区主页](https://world.xiaomawang.com/)
 
 ## <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/clock-rotate-left.svg" width="20" style="vertical-align:middle;"> 更新日志
