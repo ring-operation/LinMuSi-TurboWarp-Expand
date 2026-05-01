@@ -37,6 +37,7 @@
 3. 选择「加载自定义扩展」
 4. 下载 [林缪斯.js](https://github.com/ring-operation/LinMuSi-TurboWarp-Expand/releases/latest/download/林缪斯.js) 文件
 5. 点击载入您下载的扩展文件
+  
    ```
    林缪斯.js
    ```
