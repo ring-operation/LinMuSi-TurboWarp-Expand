@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林缪斯 - 樱花 AI 扩展下载</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #FF69B4;
+            --color-secondary: #FFB7C5;
+            --color-light: #FFC0CB;
+            --color-dark: #C2185B;
+            --color-text: #880E4F;
+            --color-bg: #FFF5F7;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EC 25%, #FFD9E6 50%, #FFE4EC 75%, #FFF0F5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 樱花飘落动画 */
+        .sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .sakura {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #FFB7C5, #FF69B4);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        .sakura::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 70%, #FFC0CB, #FF69B4);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(45deg);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) translateX(50px);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(-30px);
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) translateX(40px);
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg) translateX(0);
+                opacity: 0.3;
+            }
+        }
+
+        /* 主容器 */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* 玻璃态卡片 */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255, 250, 252, 0.95), rgba(255, 245, 247, 0.9));
+            border-radius: 32px;
+            box-shadow: 
+                0 25px 80px rgba(255, 105, 180, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                0 0 100px rgba(255, 183, 197, 0.2) inset;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: card-appear 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes card-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* 装饰性光晕 */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 183, 197, 0.3) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Logo 区域 */
+        .logo-section {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        .logo-wrapper {
+            width: 360px;
+            height: 360px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+            transform-origin: bottom center;
+            animation: logo-breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-breathe {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.027); }
+        }
+
+        @media (max-width: 1024px) {
+            .logo-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        .logo-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 100px;
+            background: radial-gradient(ellipse at center, rgba(255, 105, 180, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: shadow-pulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes shadow-pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        @media (max-width: 1024px) {
+            .logo-wrapper::before {
+                width: 320px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-wrapper::before {
+                width: 260px;
+                height: 65px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-wrapper::before {
+                width: 220px;
+                height: 55px;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(255, 105, 180, 0.4));
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.8;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 下载按钮 */
+        .download-section {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FFB7C5 50%, #FF69B4 100%);
+            background-size: 200% 200%;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 30px rgba(255, 105, 180, 0.4),
+                0 0 0 4px rgba(255, 255, 255, 0.3) inset;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 12px 40px rgba(255, 105, 180, 0.5),
+                0 0 0 4px rgba(255, 255, 255, 0.4) inset;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .download-icon {
+            width: 24px;
+            height: 24px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* 版本信息 */
+        .version-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--color-text);
+            backdrop-filter: blur(10px);
+        }
+
+        .info-badge svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-primary);
+        }
+
+        /* 使用步骤 */
+        .steps-section {
+            position: relative;
+            z-index: 1;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .steps-title {
+            font-size: 1.1rem;
+            color: var(--color-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 15px;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .steps-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #FF69B4, #FFB7C5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .footer-link:hover {
+            color: var(--color-primary);
+            background: rgba(255, 105, 180, 0.1);
+        }
+
+        .footer-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--color-text);
+            opacity: 0.6;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .glass-card {
+                padding: 35px 25px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .download-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+
+            .logo-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .logo-wrapper::before {
+                width: 220px;
+                height: 55px;
+            }
+        }
+
+        /* 加载动画 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 183, 197, 0.3);
+            border-top-color: #FF69B4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 樱花飘落容器 -->
+    <div class="sakura-container" id="sakuraContainer"></div>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <div class="glass-card">
+            <!-- Logo 区域 -->
+            <div class="logo-section">
+                <div class="logo-wrapper">
+                    <img src="https://raw.githubusercontent.com/ring-operation/gemma-270m/main/LinMuse-FullBody.avif" 
+                         alt="林缪斯 Logo" 
+                         class="logo"
+                         onerror="this.src='https://raw.githubusercontent.com/ring-operation/gemma-270m/main/CherryBlossom.svg'">
+                </div>
+                <h1 class="title">林缪斯</h1>
+                <p class="subtitle">TurboWarp / Scratch AI 扩展</p>
+            </div>
+
+            <!-- 版本信息 -->
+            <div class="version-info">
+                <span class="info-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    v5.0.0
+                </span>
+                <span class="info-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                    本地运行
+                </span>
+                <span class="info-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    隐私保护
+                </span>
+            </div>
+
+            <!-- 下载按钮 -->
+            <div class="download-section">
+                <a href="./林缪斯.js" download="林缪斯.js" class="download-btn" id="downloadBtn">
+                    <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    立即下载
+                </a>
+            </div>
+
+            <!-- 使用步骤 -->
+            <div class="steps-section">
+                <h3 class="steps-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF69B4" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    安装步骤
+                </h3>
+                <ol class="steps-list">
+                    <li>点击上方按钮下载 <strong>林缪斯.js</strong> 文件</li>
+                    <li>打开 <a href="https://turbowarp.org/" target="_blank" style="color: #FF69B4;">TurboWarp</a> 编辑器</li>
+                    <li>点击左下角「添加扩展」按钮</li>
+                    <li>选择「加载自定义扩展」→「选择文件」</li>
+                    <li>选择下载的 <strong>林缪斯.js</strong> 文件</li>
+                </ol>
+            </div>
+
+            <!-- 页脚 -->
+            <div class="footer">
+                <div class="footer-links">
+                    <a href="https://github.com/ring-operation/LinMuSi-TurboWarp-Expand" class="footer-link" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="#" class="footer-link" onclick="alert('QQ群: 1103478438'); return false;">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.003 2c-2.265 0-6.29 1.364-6.29 7.325v1.195S3.55 14.96 3.55 17.474c0 .665.17 1.025.281 1.025.114 0 .902-.484 1.748-2.072 0 0-.18 2.197 1.904 3.967 0 0-1.77.495-1.77 1.182 0 .686 4.078.43 6.29.43 2.21 0 6.287.257 6.287-.43 0-.687-1.768-1.182-1.768-1.182 2.085-1.77 1.905-3.967 1.905-3.967.845 1.588 1.634 2.072 1.746 2.072.111 0 .283-.36.283-1.025 0-2.514-2.166-6.954-2.166-6.954V9.325C18.29 3.364 14.268 2 12.003 2z"/>
+                        </svg>
+                        QQ群
+                    </a>
+                </div>
+                <p class="copyright">Made with 💖 by ring-operation</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后隐藏加载动画
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        });
+
+        // 生成樱花
+        function createSakura() {
+            const container = document.getElementById('sakuraContainer');
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            
+            // 随机位置、大小和动画时长
+            const startX = Math.random() * 100;
+            const size = Math.random() * 15 + 10;
+            const duration = Math.random() * 5 + 8;
+            
+            sakura.style.left = startX + '%';
+            sakura.style.top = '-50px';
+            sakura.style.width = size + 'px';
+            sakura.style.height = size + 'px';
+            sakura.style.animationDuration = duration + 's';
+            sakura.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            container.appendChild(sakura);
+            
+            // 动画结束后移除
+            setTimeout(() => {
+                sakura.remove();
+            }, duration * 1000);
+        }
+
+        // 持续生成樱花
+        setInterval(createSakura, 800);
+
+        // 初始生成一些樱花
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createSakura, i * 200);
+        }
+
+        // 下载按钮点击效果
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            // 创建下载成功的提示
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100px);
+                background: linear-gradient(135deg, #FF69B4, #FFB7C5);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 25px;
+                font-size: 14px;
+                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+                z-index: 1000;
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            `;
+            toast.textContent = '✨ 下载已开始，请按照下方步骤安装';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50%) translateY(100px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        });
+
+        // 鼠标跟随效果
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.glass-card');
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) / 30;
+            const y = (e.clientY - rect.top - rect.height / 2) / 30;
+            
+            card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            const card = document.querySelector('.glass-card');
+            card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
+            card.style.transition = 'transform 0.5s ease';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            const card = document.querySelector('.glass-card');
+            card.style.transition = 'transform 0.1s ease';
+        });
+    </script>
+</body>
+</html>
