@@ -41,8 +41,6 @@
    林缪斯.js
    ```
 
-> **注意**：需要先开启 GitHub Pages（Settings → Pages → Source: main branch）
-
 #### <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/folder-open.svg" width="14" style="vertical-align:middle;"> 方法二：本地加载
 
 1. 下载 `林缪斯.js` 文件（混淆保护版本）
